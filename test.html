@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Accounting Principles | Secure Academic Exam Portal</title>
+    <!-- Google Fonts for Modern Latin & Arabic Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #09090e;
+            --card-surface: rgba(18, 20, 32, 0.85);
+            --cyan-glow: #00f2fe;
+            --purple-glow: #bc13fe;
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+            --danger-glow: #ff3366;
+            --success-glow: #00e676;
+            --telegram-blue: #229ed9;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(188, 19, 254, 0.12), transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.12), transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5), transparent 70%);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 150px;
+            overflow-x: hidden;
+        }
+
+        /* Anti-Cheat Blur Overlay */
+        .blur-overlay {
+            filter: blur(16px) grayscale(90%);
+            pointer-events: none;
+            transition: filter 0.3s ease;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 35px auto;
+            padding: 35px 40px;
+            background: var(--card-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+            animation: panelFadeIn 0.6s ease-out;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1.main-title {
+            text-align: center;
+            font-weight: 800;
+            font-size: 2.3rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, var(--cyan-glow), var(--purple-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        /* Form Inputs (Registration) */
+        .form-group {
+            margin-bottom: 22px;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            color: var(--cyan-glow);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(8, 10, 18, 0.6);
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+            background: rgba(12, 16, 28, 0.85);
+        }
+
+        /* Concept Cards for Study Section */
+        .concept-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--cyan-glow);
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            border-radius: 0 12px 12px 0;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateX(6px);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .concept-card.alt-purple {
+            border-left-color: var(--purple-glow);
+        }
+
+        .concept-card.critical {
+            border-left-color: var(--danger-glow);
+            background: rgba(255, 51, 102, 0.05);
+        }
+
+        .en-concept {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .ar-concept {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            direction: rtl;
+            line-height: 1.6;
+        }
+
+        /* Meme Cards */
+        .memes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        @media (max-width: 640px) {
+            .memes-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 25px 20px;
+                margin: 20px auto;
+            }
+        }
+
+        .meme-item {
+            position: relative;
+            height: 190px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(188, 19, 254, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .meme-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+            transition: transform 0.4s ease;
+        }
+
+        .meme-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .meme-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(9, 9, 14, 0.98), rgba(9, 9, 14, 0.6) 70%, transparent);
+            padding: 24px 14px 14px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Buttons & Actions */
+        .btn-neon {
+            display: block;
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #00d2ff 0%, #bc13fe 100%);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(188, 19, 254, 0.35);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            margin-top: 25px;
+        }
+
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 210, 255, 0.55);
+            background: linear-gradient(90deg, #bc13fe 0%, #00d2ff 100%);
+        }
+
+        /* Status Badge for Automatic Telegram Dispatch */
+        .telegram-status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(34, 158, 217, 0.12);
+            border: 1px solid rgba(34, 158, 217, 0.35);
+            color: #38bdf8;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-family: 'Cairo', sans-serif;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(34, 158, 217, 0.15);
+        }
+
+        .pulse-dot {
+            width: 9px;
+            height: 9px;
+            background-color: var(--success-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success-glow);
+            animation: pulseDot 1.5s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        /* Exam Interface Elements */
+        #study-section, #exam-section, #result-section {
+            display: none;
+        }
+
+        .timer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 25px;
+        }
+
+        .timer-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timer-clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success-glow);
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px rgba(0, 230, 118, 0.4);
+            transition: color 0.3s ease;
+        }
+
+        .question-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .question-text {
+            color: var(--cyan-glow);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .option-choice {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-choice:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        .option-choice input[type="radio"] {
+            margin-right: 14px;
+            accent-color: var(--cyan-glow);
+            transform: scale(1.25);
+            cursor: pointer;
+        }
+
+        /* Results & Celebration */
+        .result-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .score-headline {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 25px 0 15px;
+            font-family: 'JetBrains Mono', sans-serif;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+        }
+
+        .score-headline span {
+            font-size: 2rem;
+            color: var(--text-muted);
+        }
+
+        .celebrate-arabic-1 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--success-glow);
+            font-size: 2rem;
+            font-weight: 900;
+            direction: rtl;
+            line-height: 1.4;
+            text-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+            margin-bottom: 10px;
+            animation: pulseGlow 1.8s infinite alternate;
+        }
+
+        .celebrate-arabic-2 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--cyan-glow);
+            font-size: 1.7rem;
+            font-weight: 900;
+            direction: rtl;
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            margin-bottom: 25px;
+        }
+
+        @keyframes pulseGlow {
+            from { transform: scale(1); filter: brightness(1); }
+            to { transform: scale(1.02); filter: brightness(1.2); }
+        }
+
+        /* Fixed Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(9, 9, 14, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            text-align: center;
+            padding: 14px 20px;
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            z-index: 1000;
+            line-height: 1.7;
+        }
+
+        .author-1 {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .author-2 {
+            color: var(--purple-glow);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(188, 19, 254, 0.3);
+        }
+    </style>
+</head>
+<body id="app-body">
+
+    <!-- 1. REGISTRATION PANEL -->
+    <div class="container" id="login-section">
+        <h1 class="main-title">Academic Portal</h1>
+        <div class="subtitle">بوابة تسجيل طلاب مبادئ المحاسبة (Chapter 1)</div>
+        
+        <div class="form-group">
+            <label for="studentName">الاسم بالكامل (ثلاثي أو رباعي)</label>
+            <input type="text" id="studentName" placeholder="أدخل اسمك هنا..." autocomplete="off">
+        </div>
+        
+        <div class="form-group">
+            <label for="studentPhone">رقم الهاتف (يُسمح بالدخول مرة واحدة فقط)</label>
+            <input type="tel" id="studentPhone" placeholder="مثال: 01012345678" autocomplete="off">
+        </div>
+
+        <button class="btn-neon" onclick="handleStudentRegistration()">بدء المذاكرة والتحضير</button>
+    </div>
+
+    <!-- 2. STUDY GUIDE & SUMMARY PANEL -->
+    <div class="container" id="study-section">
+        <h1 class="main-title">Accounting Principles</h1>
+        <div class="subtitle">ملخص الفصل الأول للمراجعة الأكاديمية المركزة</div>
+        
+        <div class="concept-card">
+            <div class="en-concept">1. Accounting Activities: Identifies, Records, and Communicates economic events.</div>
+            <div class="ar-concept">الأنشطة المحاسبية الأساسية: تحديد، وتسجيل، وتوصيل الأحداث الاقتصادية للجهات المعنية.</div>
+        </div>
+
+        <div class="concept-card alt-purple">
+            <div class="en-concept">2. Bookkeeping: Encompasses ONLY the recording step of the accounting process.</div>
+            <div class="ar-concept">مسك الدفاتر: يشمل فقط خطوة التسجيل الآلي للعمليات ضمن الدورة المحاسبية الكاملة.</div>
+        </div>
+
+        <div class="concept-card">
+            <div class="en-concept">3. Accounting Users: Internal (Management, HR, Finance) & External (Investors, Creditors, Tax Authorities).</div>
+            <div class="ar-concept">مستخدمو المحاسبة: داخليون (الإدارة وفرق العمل) وخارجيون (المستثمرون، البنوك، ومصلحة الضرائب).</div>
+        </div>
+
+        <div class="concept-card alt-purple">
+            <div class="en-concept">4. GAAP: Generally Accepted Accounting Principles (Set by standard bodies like FASB and IASB).</div>
+            <div class="ar-concept">المبادئ المحاسبية المقبولة عموماً: المعايير والقواعد التي تحكم إعداد التقارير المالية لضمان المقارنة والشفافية.</div>
+        </div>
+
+        <div class="concept-card">
+            <div class="en-concept">5. Measurement Principles: Historical Cost (record at original cost) vs. Fair Value (report at current market value).</div>
+            <div class="ar-concept">مبادئ القياس: مبدأ التكلفة التاريخية (التسجيل بسعر الشراء الفعلي) مقابل القيمة العادلة (سعر السوق الحالي).</div>
+        </div>
+
+        <div class="concept-card alt-purple">
+            <div class="en-concept">6. Accounting Assumptions: Monetary Unit (money as unit) & Economic Entity (business is separate from owners).</div>
+            <div class="ar-concept">الافتراضات المحاسبية: فرض الوحدة النقدية (تسجيل ما يقاس بالمال فقط) والوحدة الاقتصادية (استقلال المنشأة عن ملاكها).</div>
+        </div>
+
+        <div class="concept-card">
+            <div class="en-concept">7. Core Financial Statements: Income Statement, Retained Earnings Statement, Balance Sheet, and Statement of Cash Flows.</div>
+            <div class="ar-concept">القوائم المالية الأساسية: قائمة الدخل، قائمة الأرباح المحتجزة، الميزانية العمومية، وقائمة التدفقات النقدية.</div>
+        </div>
+
+        <div class="concept-card alt-purple">
+            <div class="en-concept">8. Accrual Basis of Accounting: Transactions are recorded when economic events occur, not when cash changes hands.</div>
+            <div class="ar-concept">أساس الاستحقاق: قيد العمليات والإيرادات والمصروفات عند حدوثها، بغض النظر عن وقت استلام أو سداد النقد.</div>
+        </div>
+
+        <div class="concept-card">
+            <div class="en-concept">9. The Accounting Cycle: Identification, Journal Entries, Ledger Posting, Unadjusted Trial Balance, Adjustments, and Financial Reports.</div>
+            <div class="ar-concept">الدورة المحاسبية: تحليل العمليات، تسجيل قيود اليومية، الترحيل للأستاذ، وإعداد ميزان المراجعة والقوائم الختامية.</div>
+        </div>
+
+        <div class="concept-card alt-purple">
+            <div class="en-concept">10. Economic Assets: Resources controlled by a business entity that yield future economic benefits.</div>
+            <div class="ar-concept">الأصول الاقتصادية: الموارد والممتلكات التي تسيطر عليها المنشأة ومن المتوقع أن تحقق منافع نقدية مستقبلية.</div>
+        </div>
+
+        <div class="concept-card critical">
+            <div class="en-concept" style="color:var(--danger-glow); text-transform:uppercase; font-size:0.95rem; margin-bottom:8px;">🔥 Final Exam Critical Notes</div>
+            <div class="en-concept">The Accounting Equation: Assets = Liabilities + Owner's Equity.</div>
+            <div class="ar-concept" style="margin-bottom:10px;">المعادلة المحاسبية الأساسية: الأصول = الالتزامات (الخصوم) + حقوق الملكية.</div>
+            <div class="en-concept">Ethics in Reporting: Fundamental to accounting to ensure credibility and protect stakeholders.</div>
+            <div class="ar-concept">الأخلاقيات المهنية: حجر الأساس لضمان دقة القوائم وحماية حقوق المستثمرين والمجتمع المالي.</div>
+        </div>
+
+        <!-- Sleek Visual Cards -->
+        <div class="memes-grid">
+            <div class="meme-item">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Accounting Balance Sheet">
+                <div class="meme-overlay">When the Balance Sheet finally balances on the first try</div>
+            </div>
+            <div class="meme-item">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80" alt="Financial Charts">
+                <div class="meme-overlay">"It's Accrual World out there"</div>
+            </div>
+        </div>
+
+        <button class="btn-neon" onclick="startSecureInteractiveExam()">Start Secure Exam (7 Minutes)</button>
+    </div>
+
+    <!-- 3. INTERACTIVE EXAMINATION PANEL -->
+    <div class="container" id="exam-section">
+        <h1 class="main-title">Final Assessment</h1>
+        <div class="subtitle">Secure Examination Environment</div>
+        
+        <div class="timer-header">
+            <span class="timer-label">Time Remaining:</span>
+            <span class="timer-clock" id="timer-display">07:00</span>
+        </div>
+
+        <form id="exam-questions-form"></form>
+
+        <button type="button" class="btn-neon" onclick="submitExamAssessment(false)">Submit Assessment</button>
+    </div>
+
+    <!-- 4. RESULTS & CELEBRATION PANEL -->
+    <div class="container" id="result-section">
+        <div class="result-container" id="result-content-area"></div>
+
+        <div style="text-align: center;">
+            <div class="telegram-status-badge">
+                <span class="pulse-dot"></span>
+                <span>تم إرسال نتيجتك وبيانات الاختبار إلى تليجرام الإدارة تلقائياً ⚡</span>
+            </div>
+        </div>
+
+        <button class="btn-neon" onclick="location.reload()" style="max-width: 280px; margin: 0 auto; display: block;">العودة للرئيسية</button>
+    </div>
+
+    <!-- FIXED FOOTER -->
+    <footer>
+        تم التصميم بواسطه<br>
+        <span class="author-1">المهندس عبدالله</span><br>
+        <span class="author-2">المهندسه شيرين</span>
+    </footer>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = "8896876946:AAHblDf50FtQepDLEF4CeB8kbwBTLZ7g81Y";
+        
+        // قائمة مستلمي الإشعارات (حسابك + حساب صاحبك)
+        const TELEGRAM_RECIPIENTS = [
+            "7106153834", // حسابك الخاص
+            "8601761156"  // حساب صاحبك
+        ];
+
+        let studentRecord = { name: '', phone: '', score: 0 };
+        let selectedActiveQuestions = [];
+        let totalSecondsLeft = 420; // 7 minutes
+        let countdownTimer = null;
+        let isExamActive = false;
+
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        let audioCtxInstance = null;
+
+        function getAudioContext() {
+            if (!audioCtxInstance) {
+                audioCtxInstance = new AudioCtxClass();
+            }
+            if (audioCtxInstance.state === 'suspended') {
+                audioCtxInstance.resume();
+            }
+            return audioCtxInstance;
+        }
+
+        function playCorporateTone(type) {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(800, now);
+                    gain.gain.setValueAtTime(0.04, now);
+                    osc.start(now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+                    osc.stop(now + 0.05);
+                } else if (type === 'success') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.15);
+                    osc.frequency.setValueAtTime(783.99, now + 0.3);
+                    gain.gain.setValueAtTime(0.08, now);
+                    osc.start(now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+                    osc.stop(now + 0.8);
+                } else if (type === 'alert') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    gain.gain.setValueAtTime(0.12, now);
+                    osc.start(now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+                    osc.stop(now + 0.35);
+                }
+            } catch (err) {}
+        }
+
+        const questionPool = [
+            {
+                q: "What are the three core basic activities of accounting?",
+                o: ["Identifying, Recording, and Communicating", "Purchasing, Producing, and Selling", "Recording, Auditing, and Tax Filing", "Budgeting, Financing, and Investing"],
+                a: 0
+            },
+            {
+                q: "Which of the following is categorized as an INTERNAL user of accounting data?",
+                o: ["Creditors and Banks", "Chief Executive Officer (Management)", "Tax Authorities (IRS)", "Prospective Shareholders"],
+                a: 1
+            },
+            {
+                q: "Bookkeeping differs fundamentally from the entire accounting process because bookkeeping:",
+                o: ["Focuses exclusively on the communication phase", "Encompasses only the recording step", "Prepares final financial statements", "Interprets financial ratios"],
+                a: 1
+            },
+            {
+                q: "GAAP stands for:",
+                o: ["General Audit and Accounting Practices", "Generally Accepted Accounting Principles", "Global Assets Allocation Policy", "Governmental Approved Accounting Procedures"],
+                a: 1
+            },
+            {
+                q: "Which measurement principle dictates that assets must be recorded and reported at their original cash acquisition price?",
+                o: ["Fair Value Principle", "Historical Cost Principle", "Going Concern Principle", "Conservatism Principle"],
+                a: 1
+            },
+            {
+                q: "The assumption requiring that only transaction data capable of being expressed in terms of money be included is the:",
+                o: ["Economic Entity Assumption", "Time Period Assumption", "Monetary Unit Assumption", "Accrual Assumption"],
+                a: 2
+            },
+            {
+                q: "Which entity assumption requires that the business activities be kept distinct and separate from its owner?",
+                o: ["Monetary Unit Assumption", "Economic Entity Assumption", "Going Concern Assumption", "Periodicity Assumption"],
+                a: 1
+            },
+            {
+                q: "The foundational Accounting Equation is strictly defined as:",
+                o: ["Assets = Liabilities - Owner's Equity", "Assets = Liabilities + Owner's Equity", "Owner's Equity = Assets + Liabilities", "Liabilities = Assets + Owner's Equity"],
+                a: 1
+            },
+            {
+                q: "Ethics in professional financial reporting is considered:",
+                o: ["An optional secondary practice", "A fundamental cornerstone for credible and trustworthy reporting", "Only applicable to certified auditors", "Unnecessary under strict tax laws"],
+                a: 1
+            },
+            {
+                q: "Which financial statement reports assets, liabilities, and owner's equity at a specific point in time?",
+                o: ["Income Statement", "Statement of Cash Flows", "Balance Sheet", "Retained Earnings Statement"],
+                a: 2
+            },
+            {
+                q: "Under the Accrual Basis of Accounting, revenues and expenses are recognized:",
+                o: ["Only when physical cash is received or disbursed", "When economic events occur, regardless of cash flow timing", "At the discretion of corporate management", "Only at year-end audit completion"],
+                a: 1
+            },
+            {
+                q: "A business enterprise owned exclusively by a single individual is structured as a:",
+                o: ["Proprietorship", "Partnership", "Corporation", "Cooperative"],
+                a: 0
+            },
+            {
+                q: "Creditors, investors, and regulatory bodies are classified as:",
+                o: ["Managerial users", "External users of accounting information", "Internal users", "Operational personnel"],
+                a: 1
+            },
+            {
+                q: "The standard-setting body responsible for issuing International Financial Reporting Standards (IFRS) is:",
+                o: ["FASB", "IASB", "SEC", "AICPA"],
+                a: 1
+            }
+        ];
+
+        function handleStudentRegistration() {
+            playCorporateTone('click');
+            const nameField = document.getElementById('studentName');
+            const phoneField = document.getElementById('studentPhone');
+            const nameVal = nameField.value.trim();
+            const phoneVal = phoneField.value.trim();
+
+            if (!nameVal || !phoneVal) {
+                playCorporateTone('alert');
+                alert("يرجى إدخال الاسم بالكامل ورقم الهاتف للمتابعة.");
+                return;
+            }
+
+            if (phoneVal.length < 9) {
+                playCorporateTone('alert');
+                alert("يرجى إدخال رقم هاتف صحيح ومكون من أرقام فقط.");
+                return;
+            }
+
+            // Lock single-attempt restriction
+            const previousScore = localStorage.getItem('accounting_attempt_' + phoneVal);
+            if (previousScore !== null) {
+                playCorporateTone('alert');
+                alert(`عفواً ${nameVal}، لقد قمت بأداء هذا الاختبار سابقاً برقم الهاتف هذا وسجلت درجاتك بالفعل (${previousScore}/10). لا يُسمح بإعادة المحاولة.`);
+                return;
+            }
+
+            studentRecord.name = nameVal;
+            studentRecord.phone = phoneVal;
+
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('study-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function startSecureInteractiveExam() {
+            playCorporateTone('click');
+
+            // Request browser fullscreen for secure academic testing
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+                docEl.requestFullscreen().catch(() => {});
+            } else if (docEl.webkitRequestFullscreen) {
+                docEl.webkitRequestFullscreen().catch(() => {});
+            }
+
+            setTimeout(() => {
+                document.getElementById('study-section').style.display = 'none';
+                document.getElementById('exam-section').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                buildExamQuestionSet();
+                beginExamTimer();
+            }, 300);
+        }
+
+        function buildExamQuestionSet() {
+            isExamActive = true;
+            // Shuffle question bank and extract 10 randomized items
+            const shuffledPool = [...questionPool].sort(() => 0.5 - Math.random());
+            selectedActiveQuestions = shuffledPool.slice(0, 10);
+
+            const examForm = document.getElementById('exam-questions-form');
+            let formHTML = '';
+
+            selectedActiveQuestions.forEach((item, qIdx) => {
+                formHTML += `
+                    <div class="question-card">
+                        <div class="question-text">${qIdx + 1}. ${item.q}</div>
+                        <div class="options-group">
+                `;
+                item.o.forEach((optText, optIdx) => {
+                    formHTML += `
+                        <label class="option-choice">
+                            <input type="radio" name="q_${qIdx}" value="${optIdx}" onchange="playCorporateTone('click')">
+                            <span>${optText}</span>
+                        </label>
+                    `;
+                });
+                formHTML += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            examForm.innerHTML = formHTML;
+        }
+
+        function beginExamTimer() {
+            totalSecondsLeft = 420;
+            const timerEl = document.getElementById('timer-display');
+
+            countdownTimer = setInterval(() => {
+                if (!isExamActive) {
+                    clearInterval(countdownTimer);
+                    return;
+                }
+
+                totalSecondsLeft--;
+                const minutes = Math.floor(totalSecondsLeft / 60);
+                const seconds = totalSecondsLeft % 60;
+                timerEl.textContent = `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+                if (totalSecondsLeft <= 60) {
+                    timerEl.style.color = 'var(--danger-glow)';
+                    timerEl.style.textShadow = '0 0 15px rgba(255, 51, 102, 0.6)';
+                }
+
+                if (totalSecondsLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    alert("انتهى وقت الاختبار المخصص (7 دقائق)! سيتم تقييم الإجابات وإرسالها تلقائياً.");
+                    submitExamAssessment(true);
+                }
+            }, 1000);
+        }
+
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        ['copy', 'cut', 'paste', 'dragstart', 'drop'].forEach((evt) => {
+            document.addEventListener(evt, (e) => e.preventDefault());
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F12' || (e.ctrlKey && ['u', 'c', 'v', 's', 'p', 'a'].includes(e.key.toLowerCase()))) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText('').catch(() => {});
+                }
+                triggerSecurityViolation('محاولة التقاط لقطة شاشة (Screenshot)');
+            }
+        });
+
+        window.addEventListener('blur', () => {
+            if (isExamActive) {
+                triggerSecurityViolation('الخروج من نافذة الامتحان أو تغيير التطبيق');
+            }
+        });
+
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && isExamActive) {
+                triggerSecurityViolation('الخروج من وضع ملء الشاشة الآمن');
+            }
+        });
+
+        function triggerSecurityViolation(violationReason) {
+            isExamActive = false;
+            clearInterval(countdownTimer);
+            playCorporateTone('alert');
+            document.getElementById('app-body').classList.add('blur-overlay');
+
+            // Log attempt as zero in localStorage to revoke re-test
+            localStorage.setItem('accounting_attempt_' + studentRecord.phone, '0 (مخالفة أمنية)');
+
+            // Dispatch instant security breach alert to Telegram
+            const breachMessage = `🚨 *تنبيه أمني - محاولة غش / خروج:*\n\n` +
+                `👤 *اسم الطالب:* ${studentRecord.name}\n` +
+                `📱 *رقم الهاتف:* ${studentRecord.phone}\n` +
+                `⚠️ *نوع المخالفة:* ${violationReason}\n` +
+                `❌ *الإجراء:* تم إلغاء الاختبار ورصد الدرجة (0)\n` +
+                `📅 *التوقيت:* ${new Date().toLocaleDateString('ar-EG')} - ${new Date().toLocaleTimeString('ar-EG')}`;
+
+            dispatchTelegramPayload(breachMessage);
+
+            alert(`⚠️ تم رصد مخالفة أمنية: ${violationReason}!\nتم إلغاء جلستك وإبلاغ إدارة المنصة بالبيانات.`);
+            location.reload();
+        }
+
+        function dispatchTelegramPayload(messageText) {
+            if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_RECIPIENTS.length) return;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            TELEGRAM_RECIPIENTS.forEach((chatId) => {
+                if (!chatId || chatId.startsWith("ضع")) return;
+
+                const payload = {
+                    chat_id: chatId,
+                    text: messageText,
+                    parse_mode: 'Markdown'
+                };
+
+                // Method 1: Standard POST Fetch with JSON
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(response => {
+                    if (!response.ok) throw new Error('Telegram POST failed');
+                }).catch(() => {
+                    // Method 2: GET URL fallback with full URI encoding
+                    const encodedMsg = encodeURIComponent(messageText);
+                    const getEndpoint = `${url}?chat_id=${chatId}&text=${encodedMsg}&parse_mode=Markdown`;
+
+                    fetch(getEndpoint, { mode: 'no-cors' }).catch(() => {
+                        // Method 3: Browser Image Ping
+                        const pingImg = new Image();
+                        pingImg.src = getEndpoint;
+                    });
+                });
+
+                // Method 4: Immediate Beacon Delivery
+                try {
+                    if (navigator.sendBeacon) {
+                        const beaconData = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+                        navigator.sendBeacon(url, beaconData);
+                    }
+                } catch (e) {}
+            });
+        }
+
+        function submitExamAssessment(isForcedTimeout = false) {
+            let finalScore = 0;
+            let allAnswered = true;
+
+            for (let i = 0; i < selectedActiveQuestions.length; i++) {
+                const selectedInput = document.querySelector(`input[name="q_${i}"]:checked`);
+                if (selectedInput) {
+                    if (parseInt(selectedInput.value, 10) === selectedActiveQuestions[i].a) {
+                        finalScore++;
+                    }
+                } else {
+                    allAnswered = false;
+                }
+            }
+
+            if (!allAnswered && !isForcedTimeout) {
+                playCorporateTone('alert');
+                alert("يرجى الإجابة على جميع الأسئلة العشرة قبل إتمام التسليم.");
+                return;
+            }
+
+            isExamActive = false;
+            clearInterval(countdownTimer);
+
+            // Exit Fullscreen gracefully
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
+
+            studentRecord.score = finalScore;
+            // Record completion lock in localStorage
+            localStorage.setItem('accounting_attempt_' + studentRecord.phone, finalScore);
+
+            // INSTANT AUTOMATIC DISPATCH TO TELEGRAM
+            const formattedResultTelegram = `🎓 *طالب جديد أتم امتحان مبادئ المحاسبة:*\n\n` +
+                `👤 *اسم الطالب:* ${studentRecord.name}\n` +
+                `📱 *رقم الهاتف:* ${studentRecord.phone}\n` +
+                `📊 *الدرجة:* ${finalScore} / 10\n` +
+                `📌 *التقييم:* ${finalScore >= 8 ? 'ناجح بامتياز 🌟' : 'يحتاج إلى مراجعة 📖'}\n` +
+                `⏰ *الوقت المستغرق:* ${Math.floor((420 - totalSecondsLeft) / 60)} دقيقة و ${(420 - totalSecondsLeft) % 60} ثانية\n` +
+                `📅 *التاريخ:* ${new Date().toLocaleDateString('ar-EG')} - ${new Date().toLocaleTimeString('ar-EG')}`;
+
+            dispatchTelegramPayload(formattedResultTelegram);
+
+            document.getElementById('exam-section').style.display = 'none';
+            document.getElementById('result-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const resultContainer = document.getElementById('result-content-area');
+
+            if (finalScore >= 8) {
+                playCorporateTone('success');
+                resultContainer.innerHTML = `
+                    <div class="celebrate-arabic-1">مبروك مبروك مبروك ألف مليون مبروك مهندسين بيسلموا عليك يا باشا</div>
+                    <div class="celebrate-arabic-2">اددلع البورييي</div>
+                    <div class="score-headline">${finalScore}<span>/10</span></div>
+                    <p style="color:var(--text-muted); font-size:1.15rem; font-family:'Cairo';">
+                        أداء استثنائي يا ${studentRecord.name}!
+                    </p>
+                `;
+            } else {
+                playCorporateTone('click');
+                resultContainer.innerHTML = `
+                    <div class="score-headline" style="color:var(--danger-glow); text-shadow:0 0 20px rgba(255, 51, 102, 0.4);">
+                        ${finalScore}<span>/10</span>
+                    </div>
+                    <div style="font-family:'Cairo'; font-size:1.6rem; font-weight:800; color:var(--text-light); margin-bottom:8px;">
+                        معلش معلش معلش، حظ أوفر يا ${studentRecord.name}!
+                    </div>
+                    <p style="color:var(--text-muted); font-size:1.05rem; font-family:'Cairo';">
+                        راجع الملخص والأفكار المهمة وحاول في المرات القادمة.
+                    </p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
